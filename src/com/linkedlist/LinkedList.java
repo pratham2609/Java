@@ -336,6 +336,39 @@ public class LinkedList {
         }
     }
 
+    Node insert(Node head, int n, int pos, int val) {
+        // Write your code here.
+        Node insert = new Node(val);
+        Node temp = head;
+        if(pos == 0){
+            insert.next = head;
+            head = insert;
+            return head;
+        }
+        else{
+            int count = 0;
+            while(temp != null){
+                if(count == pos - 1){
+                    break;
+                }
+                temp = temp.next;
+                count++;
+            }
+
+
+            if(temp.next == null){
+                insert.next = null;
+                temp.next = insert;
+            }
+            else{
+                insert.next = temp.next;
+                temp.next = insert;
+            }
+
+        }
+        return head;
+
+    }
 
 
     public static void main(String[] args) {
@@ -346,6 +379,8 @@ public class LinkedList {
         list1.insertFirst(5);
         list1.insertLast(11);
 
+        list1.head = list1.insert(list1.head, list1.size, 5, 2);
+
 //        LinkedList list2 = new LinkedList();
 //        list2.insertFirst(1);
 //        list2.insertFirst(2);
@@ -355,7 +390,7 @@ public class LinkedList {
 //        LinkedList ans = LinkedList.merge(list1,list2);
 //        ans.display();
 
-        list1.bubbleSort();
+//        list1.bubbleSort();
 
         list1.display();
     }
