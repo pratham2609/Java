@@ -13,7 +13,8 @@ public class Group_anagram {
             char[] count = new char[26];
             for(char ch : s.toCharArray()){
                 // - 'a' so that the array doesnot go out of bound
-                count[ch - 'a']++;
+                char temp = count[ch - 'a']++;
+                System.out.println(temp);
             }
             String str = new String(count);
             if(!map.containsKey(str)) {
