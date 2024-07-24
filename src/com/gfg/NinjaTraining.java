@@ -26,19 +26,19 @@ public class NinjaTraining {
         }
         return dp[day][last] = maxi;
     }
-    public int maximumPoints(int points[][],int N){
-        //code here
-
-        // memoize the solution
-        int[][] dp = new int[N][4];
-        for (int[] row : dp)
-            Arrays.fill(row, -1);
-
-        return calculatePoints(points, N, N - 1, 3, dp);
-    }
+//    public int maximumPoints(int points[][],int N){
+//        //code here
+//
+//        // memoize the solution
+//        int[][] dp = new int[N][4];
+//        for (int[] row : dp)
+//            Arrays.fill(row, -1);
+//
+//        return calculatePoints(points, N, N - 1, 3, dp);
+//    }
 
 //    using tabulation
-    public int maximumPoints(int points[][],int N){
+    public int maximumPoints(int points[][],int n){
         // Initialize a 2D array 'dp' to store the maximum points
         int[][] dp = new int[n][4];
 
@@ -69,34 +69,34 @@ public class NinjaTraining {
     }
 
     // space optimised
-    public int maximumPoints(int points[][],int N){
-        int prev[] = new int[4];
-
-        // Initialize the first day's maximum points based on the available choices
-        prev[0] = Math.max(points[0][1], points[0][2]);
-        prev[1] = Math.max(points[0][0], points[0][2]);
-        prev[2] = Math.max(points[0][0], points[0][1]);
-        prev[3] = Math.max(points[0][0], Math.max(points[0][1], points[0][2]));
-
-        // Iterate through each day starting from the second day
-        for (int day = 1; day < N; day++) {
-            // Initialize an array 'temp' to store the maximum points for the current day
-            int temp[] = new int[4];
-            for (int last = 0; last < 4; last++) {
-                temp[last] = 0; // Initialize the maximum points for the current day and last activity
-                // Consider each possible task for the current day
-                for (int task = 0; task <= 2; task++) {
-                    if (task != last) { // Ensure that the current task is different from the last
-                        // Calculate the points for the current activity and add it to the maximum points from the previous day
-                        temp[last] = Math.max(temp[last], points[day][task] + prev[task]);
-                    }
-                }
-            }
-            // Update 'prev' to store the maximum points for the current day
-            prev = temp;
-        }
-
-        // Return the maximum points achievable after all days (last activity is 3)
-        return prev[3];
-    }
+//    public int maximumPoints(int points[][],int N){
+//        int prev[] = new int[4];
+//
+//        // Initialize the first day's maximum points based on the available choices
+//        prev[0] = Math.max(points[0][1], points[0][2]);
+//        prev[1] = Math.max(points[0][0], points[0][2]);
+//        prev[2] = Math.max(points[0][0], points[0][1]);
+//        prev[3] = Math.max(points[0][0], Math.max(points[0][1], points[0][2]));
+//
+//        // Iterate through each day starting from the second day
+//        for (int day = 1; day < N; day++) {
+//            // Initialize an array 'temp' to store the maximum points for the current day
+//            int temp[] = new int[4];
+//            for (int last = 0; last < 4; last++) {
+//                temp[last] = 0; // Initialize the maximum points for the current day and last activity
+//                // Consider each possible task for the current day
+//                for (int task = 0; task <= 2; task++) {
+//                    if (task != last) { // Ensure that the current task is different from the last
+//                        // Calculate the points for the current activity and add it to the maximum points from the previous day
+//                        temp[last] = Math.max(temp[last], points[day][task] + prev[task]);
+//                    }
+//                }
+//            }
+//            // Update 'prev' to store the maximum points for the current day
+//            prev = temp;
+//        }
+//
+//        // Return the maximum points achievable after all days (last activity is 3)
+//        return prev[3];
+//    }
 }
